@@ -195,3 +195,12 @@ configurator.admin.valid_from: 1970-01-01 00:00:00
 ### Step 3
 # Fingerbank
 configurator.fingerbank_api_key.secret_id: '{{.fingerbank_api_key.secret_id}}'
+
+################################################################################
+# dot1x_eap_tls_pfpki test suite specific variables
+################################################################################
+# Roles
+dot1x_eap_tls_pfpki.roles.dot1x_eap_tls.id: dot1x_eap_tls
+dot1x_eap_tls_pfpki.roles.dot1x_eap_tls.notes: 802.1x role for PacketFence PKI
+dot1x_eap_tls_pfpki.roles.dot1x_eap_tls.vlan_id: 100
+
