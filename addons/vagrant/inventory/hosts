@@ -153,5 +153,8 @@ all:
         subnet: '172.17.6.0/24'
         forward_mode: 'route'
 
+      - name: 'inline-l3'
+        subnet: '172.17.18.0/24'
+        forward_mode: 'route'
 
       
