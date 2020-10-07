@@ -46,6 +46,7 @@ END
 //
 
 DELIMITER ;
+
 \! echo "Checking PacketFence schema version...";
 call ValidateVersion;
 DROP PROCEDURE IF EXISTS ValidateVersion;
@@ -68,6 +69,12 @@ CREATE TABLE IF NOT EXISTS `remote_clients` (
   PRIMARY KEY (id),
   UNIQUE KEY remote_clients_private_key (`public_key`)
 ) ENGINE=InnoDB;
+
+\! echo "Adding index to ip4log"
+ALTER TABLE `ip4log`
+  DROP INDEX IF EXISTS ip4log_mac_end_time,
+  ADD INDEX IF NOT EXISTS ip4log_tenant_id_mac_end_time (tenant_id,mac,end_time);
+
 
 \! echo "Incrementing PacketFence schema version...";
 INSERT IGNORE INTO pf_version (id, version) VALUES (@VERSION_INT, CONCAT_WS('.', @MAJOR_VERSION, @MINOR_VERSION, @SUBMINOR_VERSION));
