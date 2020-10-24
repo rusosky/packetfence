@@ -32,10 +32,12 @@ import (
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/kubernetes"
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/loadbalance"
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/log"
+	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/logger"
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/loop"
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/metadata"
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/metrics"
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/nsid"
+	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/pfdns"
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/pprof"
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/ready"
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/reload"
@@ -49,5 +51,4 @@ import (
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/trace"
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/transfer"
 	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/whoami"
-	_ "github.com/inverse-inc/packetfence/go/coredns/plugin/pfdns"
 )
