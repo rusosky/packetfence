@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
+	"net"
 	"strconv"
 	"time"
 
@@ -23,9 +24,6 @@ func setup(c *caddy.Controller) error {
 	if err != nil {
 		return plugin.Error("forward", err)
 	}
-	if f.Len() > max {
-		return plugin.Error("forward", fmt.Errorf("more than %d TOs configured: %d", max, f.Len()))
-	}
 
 	dnsserver.GetConfig(c).AddPlugin(func(next plugin.Handler) plugin.Handler {
 		f.Next = next
@@ -38,7 +36,9 @@ func setup(c *caddy.Controller) error {
 	c.OnStartup(func() error {
 		if taph := dnsserver.GetConfig(c).Handler("dnstap"); taph != nil {
 			if tapPlugin, ok := taph.(dnstap.Dnstap); ok {
-				f.tapPlugin = &tapPlugin
+				for _, fe := range f.Forward {
+					fe.tapPlugin = &tapPlugin
+				}
 			}
 		}
 		return nil
@@ -52,38 +52,43 @@ func setup(c *caddy.Controller) error {
 }
 
 // OnStartup starts a goroutines for all proxies.
-func (f *Forward) OnStartup() (err error) {
-	for _, p := range f.proxies {
-		p.start(f.hcInterval)
+func (fs *Forwards) OnStartup() (err error) {
+	for _, f := range fs.Forward {
+		for _, p := range f.proxies {
+			p.start(f.hcInterval)
+		}
 	}
 	return nil
 }
 
 // OnShutdown stops all configured proxies.
-func (f *Forward) OnShutdown() error {
-	for _, p := range f.proxies {
-		p.stop()
+func (fs *Forwards) OnShutdown() error {
+	for _, f := range fs.Forward {
+		for _, p := range f.proxies {
+			p.stop()
+		}
 	}
 	return nil
 }
 
-func parseForward(c *caddy.Controller) (*Forward, error) {
+func parseForward(c *caddy.Controller) (Forwards, error) {
+
+	ForwardEntry := Forwards{}
+	var forward []*Forward
 	var (
 		f   *Forward
 		err error
-		i   int
 	)
 	for c.Next() {
-		if i > 0 {
-			return nil, plugin.ErrOnce
-		}
-		i++
 		f, err = parseStanza(c)
+		forward = append(forward, f)
 		if err != nil {
-			return nil, err
+			return Forwards{}, err
 		}
 	}
-	return f, nil
+	ForwardEntry.Forward = forward
+
+	return ForwardEntry, nil
 }
 
 func parseStanza(c *caddy.Controller) (*Forward, error) {
@@ -253,6 +258,15 @@ func parseBlock(c *caddy.Controller, f *Forward) error {
 		}
 		f.ErrLimitExceeded = errors.New("concurrent queries exceeded maximum " + c.Val())
 		f.maxConcurrent = int64(n)
+	case "network_source":
+		if !c.NextArg() {
+			return c.ArgErr()
+		}
+		_, ipNet, err := net.ParseCIDR(c.Val())
+		if err != nil {
+			return c.Err("Unable to parse network_source configuration parameter")
+		}
+		f.sourceNetwork = *ipNet
 
 	default:
 		return c.Errf("unknown property '%s'", c.Val())
