@@ -11,7 +11,6 @@ require (
 	github.com/Sereal/Sereal v0.0.0-20161214074320-36f2c9f6f409
 	github.com/Shopify/sarama v1.24.0 // indirect
 	github.com/aws/aws-sdk-go v1.35.9
-	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/caddyserver/caddy v1.0.5
 	github.com/captncraig/cors v0.0.0-20170507232344-153f484dcf3d
 	github.com/cenkalti/backoff/v4 v4.1.0
@@ -23,7 +22,6 @@ require (
 	github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f
 	github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f // indirect
 	github.com/davecgh/go-spew v1.1.1
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/dgryski/go-csnappy v0.0.0-20150721071530-9d18391da197 // indirect
 	github.com/diegoguarnieri/go-conntrack v0.0.0-20161208180411-9abb0707ff31
 	github.com/dnstap/golang-dnstap v0.2.2
@@ -40,11 +38,9 @@ require (
 	github.com/go-redis/redis v0.0.0-20190325112110-a679e614427a
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/go-test/deep v1.0.5
-	github.com/gogo/protobuf v1.3.1 // indirect
 	github.com/goji/httpauth v0.0.0-20160601135302-2da839ab0f4d
 	github.com/golang-collections/go-datastructures v0.0.0-20150211160725-59788d5eb259 // indirect
 	github.com/golang/protobuf v1.4.3
-	github.com/google/btree v1.0.0 // indirect
 	github.com/google/go-cmp v0.4.0
 	github.com/google/uuid v1.1.1
 	github.com/gorilla/mux v1.7.3
@@ -52,7 +48,6 @@ require (
 	github.com/gorilla/schema v1.1.0
 	github.com/gorilla/websocket v1.4.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.1.0 // indirect
-	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.11.3 // indirect
 	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645
 	github.com/hanwen/go-fuse/v2 v2.0.3
@@ -69,7 +64,6 @@ require (
 	github.com/jcuga/golongpoll v1.1.0
 	github.com/jimstudt/http-authentication v0.0.0-20140401203705-3eca13d6893a
 	github.com/jinzhu/gorm v1.9.11
-	github.com/jonboulle/clockwork v0.1.0 // indirect
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/julsemaan/certmagic v0.6.3-0.20191015203349-067e102ae4ff
 	github.com/klauspost/cpuid v1.2.0
@@ -83,12 +77,9 @@ require (
 	github.com/mediocregopher/radix.v2 v0.0.0-20180603022615-94360be26253
 	github.com/mholt/caddy v0.9.5
 	github.com/miekg/dns v1.1.34
-	github.com/modern-go/reflect2 v1.0.1 // indirect
-	github.com/naoina/go-stringutil v0.1.0 // indirect
 	github.com/naoina/toml v0.1.1
 	github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d
 	github.com/nxadm/tail v1.4.4
-	github.com/opentracing-contrib/go-observer v0.0.0-20170622124052-a52f23424492 // indirect
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/openzipkin-contrib/zipkin-go-opentracing v0.4.5
 	github.com/openzipkin/zipkin-go v0.2.2
@@ -101,18 +92,14 @@ require (
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/russross/blackfriday v1.5.2
 	github.com/simon/go-netadv v0.0.0-20170602081515-fe67988531c7
-	github.com/soheilhy/cmux v0.1.4 // indirect
 	github.com/sparrc/go-ping v0.0.0-20190613174326-4e5b6552494c
 	github.com/tmc/grpc-websocket-proxy v0.0.0-20200122045848-3419fae592fc // indirect
-	github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2 // indirect
-	go.etcd.io/bbolt v1.3.3 // indirect
 	go.etcd.io/etcd v0.5.0-alpha.5.0.20200306183522-221f0cc107cb
 	go.uber.org/zap v1.14.1 // indirect
 	golang.org/x/crypto v0.0.0-20201002170205-7f63de1d35b0
 	golang.org/x/net v0.0.0-20200707034311-ab3426394381
 	golang.org/x/sys v0.0.0-20201015000850-e3ed0017c211
 	golang.org/x/text v0.3.3
-	golang.org/x/time v0.0.0-20191024005414-555d28b269f0 // indirect
 	google.golang.org/api v0.29.0
 	google.golang.org/grpc v1.29.1
 	gopkg.in/DataDog/dd-trace-go.v1 v1.27.1
