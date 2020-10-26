@@ -144,7 +144,6 @@ func parseStanza(c *caddy.Controller) (*Forward, error) {
 		f.proxies[i].SetExpire(f.expire)
 		f.proxies[i].health.SetRecursionDesired(f.opts.hcRecursionDesired)
 	}
-
 	return f, nil
 }
 

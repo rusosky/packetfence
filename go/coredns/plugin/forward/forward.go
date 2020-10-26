@@ -84,7 +84,9 @@ func (fs Forwards) ServeDNS(ctx context.Context, w dns.ResponseWriter, r *dns.Ms
 
 	for _, f := range fs.Forward {
 		state := request.Request{W: w, Req: r}
-
+		if !f.match(state) {
+			continue
+		}
 		if f.maxConcurrent > 0 {
 			count := atomic.AddInt64(&(f.concurrent), 1)
 			defer atomic.AddInt64(&(f.concurrent), -1)
