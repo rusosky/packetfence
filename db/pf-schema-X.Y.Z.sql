@@ -521,7 +521,7 @@ CREATE TABLE sms_carrier (
     name varchar(64) unique key comment 'name of the carrier',
     email_pattern varchar(255) not null comment 'sprintf pattern for making an email address from a phone number',
     created datetime not null comment 'date this record was created',
-    modified timestamp comment 'date this record was modified'
+    modified datetime NOT NULL DEFAULT CURRENT_TIMESTAMP comment 'date this record was modified'
 ) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_bin AUTO_INCREMENT = 100056;
 
 --
@@ -1015,7 +1015,7 @@ CREATE TABLE scan (
   mac varchar(17) NOT NULL,
   type varchar(255) NOT NULL,
   start_date datetime NOT NULL,
-  update_date timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  update_date datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   status varchar(255) NOT NULL,
   report_id varchar(255) NOT NULL,
   PRIMARY KEY (id)
@@ -1031,7 +1031,7 @@ CREATE TABLE billing (
   mac varchar(17) NOT NULL,
   type varchar(255) NOT NULL,
   start_date datetime NOT NULL,
-  update_date timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  update_date datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   status varchar(255) NOT NULL,
   item varchar(255) NOT NULL,
   price varchar(255) NOT NULL,
@@ -1162,7 +1162,7 @@ CREATE TABLE pf_version ( `id` INT NOT NULL PRIMARY KEY, `version` VARCHAR(11) N
 CREATE TABLE radius_audit_log (
   id int NOT NULL AUTO_INCREMENT,
   `tenant_id` int NOT NULL DEFAULT 1,
-  created_at TIMESTAMP NOT NULL,
+  created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   mac char(17) NOT NULL,
   ip varchar(255) NULL,
   computer_name varchar(255) NULL,
@@ -1214,7 +1214,7 @@ CREATE TABLE radius_audit_log (
 
 CREATE TABLE `dhcp_option82` (
   `mac` varchar(17) NOT NULL PRIMARY KEY,
-  `created_at` TIMESTAMP NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `option82_switch` varchar(17) NULL,
   `switch_id` varchar(17) NULL,
   `port` varchar(8) NOT NULL default '',
@@ -1232,7 +1232,7 @@ CREATE TABLE `dhcp_option82` (
 CREATE TABLE `dhcp_option82_history` (
   `dhcp_option82_history_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `mac` varchar(17) NOT NULL,
-  `created_at` TIMESTAMP NOT NULL,
+  `created_at` datetime NOT NULL,
   `option82_switch` varchar(17) NULL,
   `switch_id` varchar(17) NULL,
   `port` varchar(8) NOT NULL default '',
@@ -1362,7 +1362,7 @@ CREATE TABLE user_preference (
 CREATE TABLE `dns_audit_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tenant_id` int(11) NOT NULL DEFAULT '1',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ip` varchar(45) NOT NULL,
   `mac` char(17) NOT NULL,
   `qname` varchar(255) DEFAULT NULL,
@@ -1382,7 +1382,7 @@ CREATE TABLE `dns_audit_log` (
 CREATE TABLE `admin_api_audit_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tenant_id` int(11) NOT NULL DEFAULT '1',
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_name` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `action` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `object_id` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
@@ -1421,9 +1421,9 @@ CREATE TABLE dhcppool (
 
 CREATE TABLE `pki_cas` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` datetime NULL DEFAULT NULL,
+  `updated_at` datetime NULL DEFAULT NULL,
+  `deleted_at` datetime NULL DEFAULT NULL,
   `cn` varchar(255) DEFAULT NULL,
   `mail` varchar(255) DEFAULT NULL,
   `organisation` varchar(255) DEFAULT NULL,
@@ -1457,9 +1457,9 @@ CREATE TABLE `pki_cas` (
 
 CREATE TABLE `pki_certs` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` datetime NULL DEFAULT NULL,
+  `updated_at` datetime NULL DEFAULT NULL,
+  `deleted_at` datetime NULL DEFAULT NULL,
   `cn` varchar(255) DEFAULT NULL,
   `mail` varchar(255) DEFAULT NULL,
   `ca_id` int(10) unsigned DEFAULT NULL,
@@ -1474,8 +1474,8 @@ CREATE TABLE `pki_certs` (
   `cert` longtext,
   `profile_id` int(10) unsigned DEFAULT NULL,
   `profile_name` varchar(255) DEFAULT NULL,
-  `valid_until` timestamp NULL DEFAULT NULL,
-  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `valid_until` datetime NULL DEFAULT NULL,
+  `date` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `serial_number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cn` (`cn`),
@@ -1495,9 +1495,9 @@ CREATE TABLE `pki_certs` (
 
 CREATE TABLE `pki_profiles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` datetime NULL DEFAULT NULL,
+  `updated_at` datetime NULL DEFAULT NULL,
+  `deleted_at` datetime NULL DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `ca_id` int(10) unsigned DEFAULT NULL,
   `ca_name` varchar(255) DEFAULT NULL,
@@ -1526,9 +1526,9 @@ CREATE TABLE `pki_profiles` (
 
 CREATE TABLE `pki_revoked_certs` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` datetime NULL DEFAULT NULL,
+  `updated_at` datetime NULL DEFAULT NULL,
+  `deleted_at` datetime NULL DEFAULT NULL,
   `cn` varchar(255) DEFAULT NULL,
   `mail` varchar(255) DEFAULT NULL,
   `ca_id` int(10) unsigned DEFAULT NULL,
@@ -1543,10 +1543,10 @@ CREATE TABLE `pki_revoked_certs` (
   `cert` longtext,
   `profile_id` int(10) unsigned DEFAULT NULL,
   `profile_name` varchar(255) DEFAULT NULL,
-  `valid_until` timestamp NULL DEFAULT NULL,
-  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `valid_until` datetime NULL DEFAULT NULL,
+  `date` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `serial_number` varchar(255) DEFAULT NULL,
-  `revoked` timestamp NULL DEFAULT NULL,
+  `revoked` datetime NULL DEFAULT NULL,
   `crl_reason` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `valid_until` (`valid_until`),
