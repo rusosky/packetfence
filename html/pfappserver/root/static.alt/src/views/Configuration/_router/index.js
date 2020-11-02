@@ -8,6 +8,7 @@ import BasesStore from '../_store/bases'
 import BillingTiersStore from '../_store/billingTiers'
 import CertificatesStore from '../_store/certificates'
 import ConnectionProfilesStore from '../_store/connectionProfiles'
+import RemoteConnectionProfilesStore from '../_store/remoteConnectionProfiles'
 import SelfServicesStore from '../_store/selfServices'
 import DomainsStore from '../_store/domains'
 import FilterEnginesStore from '../_store/filterEngines'
@@ -57,6 +58,8 @@ const SwitchGroupView = () => import(/* webpackChunkName: "Configuration" */ '..
 const ConnectionProfilesList = () => import(/* webpackChunkName: "Configuration" */ '../_components/ConnectionProfilesList')
 const ConnectionProfileView = () => import(/* webpackChunkName: "Configuration" */ '../_components/ConnectionProfileView')
 const ConnectionProfileFileView = () => import(/* webpackChunkName: "Editor" */ '../_components/ConnectionProfileFileView')
+const RemoteConnectionProfilesList = () => import(/* webpackChunkName: "Configuration" */ '../_components/RemoteConnectionProfilesList')
+const RemoteConnectionProfileView = () => import(/* webpackChunkName: "Configuration" */ '../_components/RemoteConnectionProfileView')
 
 /* Compliance */
 const ComplianceSection = () => import(/* webpackChunkName: "Configuration" */ '../_components/ComplianceSection')
@@ -178,6 +181,9 @@ const route = {
     }
     if (!store.state.$_connection_profiles) {
       store.registerModule('$_connection_profiles', ConnectionProfilesStore)
+    }
+    if (!store.state.$_remote_connection_profiles) {
+      store.registerModule('$_remote_connection_profiles', RemoteConnectionProfilesStore)
     }
     if (!store.state.$_self_services) {
       store.registerModule('$_self_services', SelfServicesStore)
@@ -649,6 +655,55 @@ const route = {
           store.registerModule('formConnectionProfile', FormStore)
         }
         next()
+      }
+    },
+    /**
+     * Remote connection profiles
+     */
+    {
+      path: 'remote_connection_profiles',
+      name: 'remote_connection_profiles',
+      component: RemoteConnectionProfilesList,
+      props: (route) => ({ query: route.query.query })
+    },
+    {
+      path: 'remote_connection_profiles/new',
+      name: 'newRemoteConnectionProfile',
+      component: RemoteConnectionProfileView,
+      props: () => ({ formStoreName: 'formRemoteConnectionProfile', isNew: true }),
+      beforeEnter: (to, from, next) => {
+        if (!store.state.formRemoteConnectionProfile) { // Register store module only once
+          store.registerModule('formRemoteConnectionProfile', FormStore)
+        }
+        next()
+      }
+    },
+    {
+      path: 'remote_connection_profile/:id',
+      name: 'remote_connection_profile',
+      component: RemoteConnectionProfileView,
+      props: (route) => ({ formStoreName: 'formRemoteConnectionProfile', id: route.params.id }),
+      beforeEnter: (to, from, next) => {
+        if (!store.state.formRemoteConnectionProfile) { // Register store module only once
+          store.registerModule('formRemoteConnectionProfile', FormStore)
+        }
+        store.dispatch('$_remote_connection_profiles/getRemoteConnectionProfile', to.params.id).then(() => {
+          next()
+        })
+      }
+    },
+    {
+      path: 'remote_connection_profile/:id/clone',
+      name: 'cloneRemoteConnectionProfile',
+      component: RemoteConnectionProfileView,
+      props: (route) => ({ formStoreName: 'formRemoteConnectionProfile', id: route.params.id, isClone: true }),
+      beforeEnter: (to, from, next) => {
+        if (!store.state.formRemoteConnectionProfile) { // Register store module only once
+          store.registerModule('formRemoteConnectionProfile', FormStore)
+        }
+        store.dispatch('$_remote_connection_profiles/getRemoteConnectionProfile', to.params.id).then(() => {
+          next()
+        })
       }
     },
     /**
