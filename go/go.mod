@@ -10,11 +10,13 @@ require (
 	github.com/OneOfOne/xxhash v1.2.7
 	github.com/Sereal/Sereal v0.0.0-20161214074320-36f2c9f6f409
 	github.com/Shopify/sarama v1.24.0 // indirect
+	github.com/alangpierce/go-forceexport v0.0.0-20160317203124-8f1d6941cd75 // indirect
 	github.com/aws/aws-sdk-go v1.35.9
-	github.com/caddyserver/caddy v1.0.5
+	github.com/caddyserver/caddy v1.0.3
 	github.com/captncraig/cors v0.0.0-20170507232344-153f484dcf3d
 	github.com/cenkalti/backoff/v4 v4.1.0
 	github.com/cevaris/ordered_map v0.0.0-20171019141434-01ce2b16ad4f
+	github.com/cheekybits/genny v1.0.0 // indirect
 	github.com/coredns/caddy v1.1.0
 	github.com/coreos/bbolt v1.3.3 // indirect
 	github.com/coreos/etcd v3.3.15+incompatible
@@ -35,6 +37,7 @@ require (
 	github.com/gdey/jsonpath v0.0.0-20151203210429-124c978a1ffc
 	github.com/gin-gonic/gin v1.6.2
 	github.com/go-acme/lego v2.5.0+incompatible
+	github.com/go-acme/lego/v3 v3.2.0 // indirect
 	github.com/go-errors/errors v1.0.1
 	github.com/go-redis/redis v0.0.0-20190325112110-a679e614427a
 	github.com/go-sql-driver/mysql v1.4.1
@@ -70,13 +73,17 @@ require (
 	github.com/klauspost/cpuid v1.2.1
 	github.com/knq/pemutil v0.0.0-20181215144041-fb6fad722528
 	github.com/kr/pretty v0.2.0
-	github.com/lucas-clemente/quic-go v0.13.1
+	github.com/lucas-clemente/quic-go v0.10.2
+	github.com/marten-seemann/chacha20 v0.2.0 // indirect
+	github.com/marten-seemann/qpack v0.1.0 // indirect
+	github.com/marten-seemann/qtls v0.4.1 // indirect
 	github.com/mattn/go-colorable v0.1.4 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1
 	github.com/mdlayher/ethernet v0.0.0-20170707213343-e72cf8343052
 	github.com/mdlayher/raw v0.0.0-20171214195253-9df8b4265df2
 	github.com/mediocregopher/radix.v2 v0.0.0-20180603022615-94360be26253
 	github.com/mholt/caddy v0.9.5
+	github.com/mholt/certmagic v0.8.3 // indirect
 	github.com/miekg/dns v1.1.34
 	github.com/naoina/toml v0.1.1
 	github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d
