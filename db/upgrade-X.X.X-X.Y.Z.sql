@@ -69,6 +69,17 @@ CREATE TABLE IF NOT EXISTS `remote_clients` (
   UNIQUE KEY remote_clients_private_key (`public_key`)
 ) ENGINE=InnoDB;
 
+--
+-- New table `event_log`
+--
+\!echo "Creating new table event_log"
+CREATE TABLE IF NOT EXISTS event_log (
+    namespace VARCHAR(255),
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    event_info BLOB
+) ENGINE=InnoDB;
+
+
 \! echo "Incrementing PacketFence schema version...";
 INSERT IGNORE INTO pf_version (id, version) VALUES (@VERSION_INT, CONCAT_WS('.', @MAJOR_VERSION, @MINOR_VERSION, @SUBMINOR_VERSION));
 
