@@ -50,6 +50,7 @@ DELIMITER ;
 call ValidateVersion;
 DROP PROCEDURE IF EXISTS ValidateVersion;
 
+
 \! echo "Altering node_category"
 ALTER TABLE node_category
     ADD COLUMN IF NOT EXISTS `include_parent_acls` varchar(255) default NULL,
@@ -79,6 +80,65 @@ CREATE TABLE IF NOT EXISTS event_log (
     event_info BLOB
 ) ENGINE=InnoDB;
 
+DELIMITER //
+CREATE TRIGGER `log_event_auth_log_insert` AFTER INSERT ON `auth_log`
+FOR EACH ROW BEGIN
+set @k = pf_logger(
+        "auth_log",
+        "tenant_id", NEW.tenant_id,
+        "process_name", NEW.process_name,
+        "mac", NEW.mac,
+        "pid", NEW.pid,
+        "status", NEW.status,
+        "attempted_at", NEW.attempted_at,
+        "completed_at", NEW.completed_at,
+        "source", NEW.source,
+        "profile", NEW.profile
+    );
+END;
+//
+
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER `log_event_admin_api_audit_log_insert` AFTER INSERT ON `admin_api_audit_log`
+FOR EACH ROW BEGIN
+set @k = pf_logger(
+        "admin_api_audit_log",
+        "tenant_id", NEW.tenant_id,
+        "created_at", NEW.created_at,
+        "user_name", NEW.user_name,
+        "action", NEW.action,
+        "object_id", NEW.object_id,
+        "url", NEW.url,
+        "method", NEW.method,
+        "request", NEW.request,
+        "status", NEW.status
+    );
+END;
+//
+DELIMITER ;
+
+
+DELIMITER //
+CREATE TRIGGER `log_event_auth_log_update` AFTER UPDATE ON `auth_log`
+FOR EACH ROW BEGIN
+set @k = pf_logger(
+        "auth_log",
+        "tenant_id", NEW.tenant_id,
+        "process_name", NEW.process_name,
+        "mac", NEW.mac,
+        "pid", NEW.pid,
+        "status", NEW.status,
+        "attempted_at", NEW.attempted_at,
+        "completed_at", NEW.completed_at,
+        "source", NEW.source,
+        "profile", NEW.profile
+    );
+END;
+//
+
+DELIMITER ;
 
 \! echo "Incrementing PacketFence schema version...";
 INSERT IGNORE INTO pf_version (id, version) VALUES (@VERSION_INT, CONCAT_WS('.', @MAJOR_VERSION, @MINOR_VERSION, @SUBMINOR_VERSION));
