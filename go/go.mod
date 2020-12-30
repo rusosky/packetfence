@@ -7,6 +7,7 @@ require (
 	github.com/Azure/go-autorest/autorest v0.11.10
 	github.com/Azure/go-autorest/autorest/azure/auth v0.5.3
 	github.com/DataDog/datadog-go v3.5.0+incompatible // indirect
+	cloud.google.com/go v0.37.4 // indirect
 	github.com/OneOfOne/xxhash v1.2.7
 	github.com/Sereal/Sereal v0.0.0-20161214074320-36f2c9f6f409
 	github.com/Shopify/sarama v1.24.0 // indirect
@@ -32,7 +33,7 @@ require (
 	github.com/farsightsec/golang-framestream v0.3.0
 	github.com/fdurand/arp v0.0.0-20180807174648-27b38d3af1be
 	github.com/fdurand/go-cache v0.0.0-20180104143916-cf0198ac7d92
-	github.com/fdurand/scep v1.0.1-0.20201229152023-054ac94f1543
+	github.com/fdurand/scep v1.0.1-0.20201230183908-e1d78a799f0c
 	github.com/flynn/go-shlex v0.0.0-20150515145356-3f9db97f8568
 	github.com/gavv/httpexpect/v2 v2.1.0
 	github.com/gdey/jsonpath v0.0.0-20151203210429-124c978a1ffc
@@ -40,8 +41,10 @@ require (
 	github.com/go-acme/lego v2.5.0+incompatible
 	github.com/go-acme/lego/v3 v3.2.0 // indirect
 	github.com/go-errors/errors v1.0.1
+	github.com/go-kit/kit v0.8.0
+	github.com/go-logfmt/logfmt v0.4.0 // indirect
 	github.com/go-redis/redis v0.0.0-20190325112110-a679e614427a
-	github.com/go-sql-driver/mysql v1.4.1
+	github.com/go-sql-driver/mysql v1.5.0
 	github.com/go-test/deep v1.0.5
 	github.com/goji/httpauth v0.0.0-20160601135302-2da839ab0f4d
 	github.com/golang-collections/go-datastructures v0.0.0-20150211160725-59788d5eb259
@@ -68,8 +71,9 @@ require (
 	github.com/inverse-inc/go-radius v0.0.0-20201019132414-82756e2d8d47
 	github.com/jcuga/golongpoll v1.1.0
 	github.com/jimstudt/http-authentication v0.0.0-20140401203705-3eca13d6893a
-	github.com/jinzhu/gorm v1.9.11
-	github.com/julienschmidt/httprouter v1.3.0
+	github.com/jinzhu/gorm v1.9.16
+	github.com/jonboulle/clockwork v0.1.0 // indirect
+	github.com/julienschmidt/httprouter v1.2.0
 	github.com/julsemaan/certmagic v0.6.3-0.20191015203349-067e102ae4ff
 	github.com/klauspost/cpuid v1.2.1
 	github.com/knq/pemutil v0.0.0-20181215144041-fb6fad722528
@@ -115,6 +119,14 @@ require (
 	google.golang.org/api v0.29.0
 	google.golang.org/grpc v1.29.1
 	gopkg.in/DataDog/dd-trace-go.v1 v1.27.1
+	github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2 // indirect
+	go.etcd.io/bbolt v1.3.3 // indirect
+	go.uber.org/zap v1.13.0 // indirect
+	golang.org/x/crypto v0.0.0-20191205180655-e7c4368fe9dd
+	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e
+	golang.org/x/text v0.3.2
+	golang.org/x/time v0.0.0-20191024005414-555d28b269f0 // indirect
+	google.golang.org/grpc v1.22.1
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/alexcesaro/statsd.v2 v2.0.0-20160320182110-7fea3f0d2fab
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
