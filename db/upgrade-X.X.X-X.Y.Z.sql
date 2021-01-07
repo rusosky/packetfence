@@ -69,6 +69,8 @@ CREATE TABLE IF NOT EXISTS `remote_clients` (
   UNIQUE KEY remote_clients_private_key (`public_key`)
 ) ENGINE=InnoDB;
 
+CREATE FUNCTION IF NOT EXISTS pf_logger RETURNS integer SONAME "pf_udf.so";
+
 DELIMITER /
 CREATE OR REPLACE TRIGGER `log_event_auth_log_insert` AFTER INSERT ON `auth_log`
 FOR EACH ROW BEGIN
