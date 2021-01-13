@@ -318,7 +318,7 @@ sub restartSwitchport {
         return ($STATUS::INTERNAL_SERVER_ERROR, "Unable to instantiate switch ".$locationlog->{switch});
     }
 
-    unless($switch->bouncePort($locationlog->{port})) {
+    unless($switch->bouncePort($locationlog->{port}, $mac)) {
         $status = $STATUS::INTERNAL_SERVER_ERROR;
         $status_msg = "Couldn't restart port.";
     }
