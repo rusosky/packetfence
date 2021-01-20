@@ -827,6 +827,9 @@ github.com/inverse-inc/packetfence v0.0.0-20191021142437-789414441c4c h1:HDJDKSH
 github.com/inverse-inc/packetfence/go v0.0.0-20191015112529-47dcd5f95b62 h1:6Wv3UDrVX5Z5KrvHwr/nHmKxW3b6F45SL71MhxvDxO4=
 github.com/inverse-inc/packetfence/go v0.0.0-20191015112529-47dcd5f95b62/go.mod h1:AqUuzaoVHgI5nrU6yatlK7et93fgyVgjeK8CRnbV5JI=
 github.com/inverse-inc/packetfence/go v0.0.0-20191015112529-47dcd5f95b62/go.mod h1:AqUuzaoVHgI5nrU6yatlK7et93fgyVgjeK8CRnbV5JI=
+github.com/inverse-inc/pkcs7 v0.0.0-20210120195334-f839fdbb1f84/go.mod h1:adBgAyadl5D9Mz9rhkQyzZpwcUK9eXdKslXH4oImbB0=
+github.com/inverse-inc/scep v0.0.0-20210120201805-eb98f5654ee4 h1:j+LN8qB0DqC74l9MHq1ysjyiN7kfbHIF3UNjjbVAlvw=
+github.com/inverse-inc/scep v0.0.0-20210120201805-eb98f5654ee4/go.mod h1:bcHlFB5I8JqSU5Lqt+NatfA9y64T2fFt05QSFOEFJGI=
 github.com/jcmturner/gofork v0.0.0-20190328161633-dc7c13fece03 h1:FUwcHNlEqkqLjLBdCp5PRlCFijNjvcYANOZXzCfXwCM=
 github.com/jcmturner/gofork v0.0.0-20190328161633-dc7c13fece03 h1:FUwcHNlEqkqLjLBdCp5PRlCFijNjvcYANOZXzCfXwCM=
 github.com/jcmturner/gofork v0.0.0-20190328161633-dc7c13fece03/go.mod h1:MK8+TM0La+2rjBD4jE12Kj1pCCxK7d2LK/UM3ncEo0o=
