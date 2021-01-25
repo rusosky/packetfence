@@ -27,10 +27,18 @@ test: setup global_config dot1x_eap_peap wired_mac_auth backup_db_and_restore gl
 setup:
 	./venom-wrapper.sh setup
 
+.PHONY: setup_multi_tenant
+setup_multi_tenant:
+	./venom-wrapper.sh setup/00_setup_multi_tenant.yml
+
 # teardown is done at end of all test suites: all things configured here have no impact
 .PHONY: global_config
 global_config:
 	./venom-wrapper.sh $(PFSERVERS_DIR)/global_config
+
+.PHONY: global_config_tenant
+global_config:
+	./venom-wrapper.sh $(PFSERVERS_DIR)/global_config_tenant
 
 .PHONY: dot1x_eap_peap
 dot1x_eap_peap: setup global_config
@@ -46,6 +54,16 @@ wired_mac_auth: setup global_config
 captive_portal: setup global_config
 	./venom-wrapper.sh $(PFSERVERS_DIR)/captive_portal
 	./venom-wrapper.sh $(PFSERVERS_DIR)/captive_portal/teardown
+
+.PHONY: pfdhcplistener_single_tenant
+pfdhcplistener_single_tenant: setup
+	./venom-wrapper.sh $(PFSERVERS_DIR)/pfdhcplistener_single_tenant
+	./venom-wrapper.sh $(PFSERVERS_DIR)/pfdhcplistener_single_tenant/teardown
+
+.PHONY: pfdhcplistener_multi_tenant
+pfdhcplistener_multi_tenant: global_config_tenant
+	./venom-wrapper.sh $(PFSERVERS_DIR)/pfdhcplistener_multi_tenant
+	./venom-wrapper.sh $(PFSERVERS_DIR)/pfdhcplistener_multi_tenant/teardown
 
 .PHONY: backup_db_and_restore
 backup_db_and_restore: setup
